@@ -1,8 +1,8 @@
-# frozen_string_literal: true
-
+require_relative "rails-settings/settings"
 require_relative "rails-settings/base"
-require_relative "rails-settings/request_cache"
-require_relative "rails-settings/middleware"
+require_relative "rails-settings/scoped_settings"
+require_relative "rails-settings/default"
+require_relative "rails-settings/extend"
 require_relative "rails-settings/railtie"
 require_relative "rails-settings/version"
 

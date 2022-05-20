@@ -7,5 +7,4 @@ log
 vendor/
 pkg/
 coverage/
-gemfiles/*.lock
 

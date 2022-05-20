@@ -1,17 +1,14 @@
-# frozen_string_literal: true
-
 require "rails/generators"
 require "rails/generators/migration"
 
-module RailsSettings
+module Settings
   class InstallGenerator < Rails::Generators::NamedBase
-    namespace "settings:install"
     desc "Generate RailsSettings files."
     include Rails::Generators::Migration
 
     argument :name, type: :string, default: "setting"
 
-    source_root File.expand_path("templates", __dir__)
+    source_root File.expand_path("../templates", __FILE__)
 
     @@migrations = false
 
@@ -30,19 +27,16 @@ module RailsSettings
 
     def install_setting
       template "model.rb", File.join("app/models", class_path, "#{file_name}.rb")
+      template "app.yml", File.join("config", "app.yml")
       migration_template "migration.rb", "db/migrate/create_settings.rb", migration_version: migration_version
     end
 
-    def rails_version_major
-      Rails::VERSION::MAJOR
-    end
-
-    def rails_version_minor
-      Rails::VERSION::MINOR
+    def rails5?
+      Rails.version.start_with? "5"
     end
 
     def migration_version
-      "[#{rails_version_major}.#{rails_version_minor}]" if rails_version_major >= 5
+      "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]" if rails5?
     end
   end
 end
