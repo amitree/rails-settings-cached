@@ -12,7 +12,8 @@ module RailsSettings
 
       YAML.load \
         self[:value],
-        permitted_classes: [DateTime, Time, Symbol, ActiveSupport::TimeZone, ActiveSupport::TimeWithZone]
+        permitted_classes: [DateTime, Time, Symbol, Regexp,
+                            ActiveSupport::TimeZone, ActiveSupport::TimeWithZone]
     end
 
     # set the value field, YAML encoded
