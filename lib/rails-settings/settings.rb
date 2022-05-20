@@ -8,7 +8,7 @@ module RailsSettings
 
     # get the value field, YAML decoded
     def value
-      YAML.load(self[:value], permitted_classes: [DateTime, Time, Symbol]) if self[:value].present?
+      YAML.load(self[:value], permitted_classes: [DateTime, Time, Symbol, ActiveSupport::TimeZone]) if self[:value].present?
     end
 
     # set the value field, YAML encoded
